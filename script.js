@@ -8,55 +8,48 @@
 // Reset button at the bottom of the page clears all entries
 
 var playerOne = true;
-var square = $(".square");
+var squares = $(".square");
+var turnBox = $("#turn-indicator");
+var winningCombinations = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6]
+];
 
-function getWinner () {
-}
+// function getWinner () {
+//
+// }
 
-square.on("click", function(){
+$(".square").on("click", function(){
   var self = $(this);
   if (self.contents().length === 0) {
-    console.log(self);
     if (playerOne){
       self.html("X");
       self.addClass("clicked");
       playerOne = false;
-      getWinner();
+      turnBox.html("It's O's turn.");
+      // getWinner();
       return playerOne;
-    } else if (playerOne === false) {
+    } else
+    {
       self.html("O");
       self.addClass("clicked");
       playerOne = true;
-      getWinner();
+      turnBox.html("It's X's turn.");
+      // getWinner();
       return playerOne;
     }
   }
 });
 
 $("#reset-button").click(function(){
-  square.removeClass("clicked");
-  square.html("");
+  squares.removeClass("clicked");
+  squares.html("");
+  turnBox.html("");
   alertify.success("Game Board Cleared");
 });
-
-
-
-// if (((squareOne.html() === "X") && (squareTwo.html() === "X") && (squareThree.html() === "X")) ||
-//     ((squareFour.html() === "X") && (squareFive.html() === "X") && (squareSix.html() === "X"))  ||
-//     ((squareSeven.html() === "X") && (squareEight.html() === "X") && (squareNine.html() === "X"))  ||
-//     ((squareOne.html() === "X") && (squareFour.html() === "X") && (squareSeven.html() === "X"))  ||
-//     ((squareTwo.html() === "X") && (squareFive.html() === "X") && (squareEight.html() === "X"))  ||
-//     ((squareThree.html() === "X") && (squareSix.html() === "X") && (squareNine.html() === "X"))  ||
-//     ((squareOne.html() === "X") && (squareFive.html() === "X") && (squareNine.html() === "X"))  ||
-//     ((squareThree.html() === "X") && (squareFive.html() === "X") && (squareSeven.html() === "X"))
-// ) { alertify.alert("X has triumped!");
-// } else if (((squareOne.html() === "O") && (squareTwo.html() === "O") && (squareThree.html() === "O")) ||
-//     ((squareFour.html() === "O") && (squareFive.html() === "O") && (squareSix.html() === "O"))  ||
-//     ((squareSeven.html() === "O") && (squareEight.html() === "O") && (squareNine.html() === "O"))  ||
-//     ((squareOne.html() === "O") && (squareFour.html() === "O") && (squareSeven.html() === "O"))  ||
-//     ((squareTwo.html() === "O") && (squareFive.html() === "O") && (squareEight.html() === "O"))  ||
-//     ((squareThree.html() === "O") && (squareSix.html() === "O") && (squareNine.html() === "O"))  ||
-//     ((squareOne.html() === "O") && (squareFive.html() === "O") && (squareNine.html() === "O"))  ||
-//     ((squareThree.html() === "O") && (squareFive.html() === "O") && (squareSeven.html() === "O"))
-//   ) { alertify.alert("O stands victorious!");
-//   }
