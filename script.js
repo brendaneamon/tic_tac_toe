@@ -21,8 +21,9 @@ var winningCombinations = [
   [2, 4, 6]
 ];
 
-// function getWinner () {
-//
+// function buildMovesArray() {
+// loop through the array of squares
+// find the HTML content of each square
 // }
 
 $(".square").on("click", function(){
