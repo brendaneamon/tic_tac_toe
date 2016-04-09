@@ -53,16 +53,8 @@ $(".square").on("click", function(){
 
 // Refactor: include reset as a prototype on the constructor
 
-resetButton.click(function(){
-$("td").removeClass("clicked");
-squareOne.html("");
-squareTwo.html("");
-squareThree.html("");
-squareFour.html("");
-squareFive.html("");
-squareSix.html("");
-squareSeven.html("");
-squareEight.html("");
-squareNine.html("");
-alertify.success("Game Board Cleared");
+$("#reset-button").click(function(){
+  $("td").removeClass("clicked");
+  $(".square").html("");
+  alertify.success("Game Board Cleared");
 });
