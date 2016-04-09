@@ -8,7 +8,7 @@
 // Reset button at the bottom of the page clears all entries
 
 var playerOne = true;
-var squares = $(".square");
+var squares = $("td");
 var turnBox = $("#turn-indicator");
 var winningCombinations = [
   [0, 1, 2],
