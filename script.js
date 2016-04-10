@@ -8,8 +8,10 @@
 // Reset button at the bottom of the page clears all entries
 
 var playerOne = true;
-var squares = $("td");
+var squares = $(".square");
 var turnBox = $("#turn-indicator");
+var xMoves = [];
+var oMoves = [];
 var winningCombinations = [
   [0, 1, 2],
   [3, 4, 5],
@@ -21,29 +23,40 @@ var winningCombinations = [
   [2, 4, 6]
 ];
 
-// function buildMovesArray() {
-// loop through the array of squares
-// find the HTML content of each square
+// function pushMove (td) {
+//   for (i = 0; i < squares.length; i++) {
+//     if ($td.attr("class", "squares clicked X")) {
+//       xMoves.push($td.index());
+//     }  else if ($td.attr("class", "squares clicked O"))  {
+//       oMoves.push($td.index());
+//     }
+//   }
 // }
+
+function changeTurn() {
+  playerOne ? (playerOne = false) : (playerOne = true);
+  return playerOne;
+}
 
 $(".square").on("click", function(){
   var self = $(this);
+  var i = self.index();
   if (self.contents().length === 0) {
     if (playerOne){
+      xMoves.push(parseInt(self.attr("data-num")));
       self.html("X");
       self.addClass("clicked");
-      playerOne = false;
+      changeTurn();
       turnBox.html("It's O's turn.");
-      // getWinner();
-      return playerOne;
+      console.log(xMoves);
     } else
     {
+      oMoves.push(parseInt(self.attr("data-num")));
       self.html("O");
       self.addClass("clicked");
-      playerOne = true;
+      changeTurn();
       turnBox.html("It's X's turn.");
-      // getWinner();
-      return playerOne;
+      console.log(oMoves);
     }
   }
 });
@@ -52,5 +65,8 @@ $("#reset-button").click(function(){
   squares.removeClass("clicked");
   squares.html("");
   turnBox.html("");
+  playerOne = true;
+  oMoves = [];
+  xMoves = [];
   alertify.success("Game Board Cleared");
 });
